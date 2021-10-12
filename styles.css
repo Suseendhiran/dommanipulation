@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+}
+.container {
+  margin-top: 50px;
+}
+.flagContainer img {
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 5px;
+}
+.flagContainer {
+  border-radius: 16px;
+  overflow: hidden;
+  width: 250px;
+  box-shadow: 32px 32px 82px 3px rgba(0, 0, 0, 0.2);
+
+  margin: auto;
+  margin-top: 20px;
+}
+.data {
+  display: flex;
+  align-items: center;
+}
+.data h5 {
+  margin-left: 10px;
+  font-size: 16px;
+}
+.data h4 {
+  margin-left: 10px;
+  font-size: 18px;
+  margin-top: 0;
+  text-transform: capitalize;
+}
+.detailsContainer {
+  padding: 7px;
+}
