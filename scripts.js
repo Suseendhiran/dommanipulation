@@ -37,37 +37,53 @@ const countries = [
     capital: "Seoul",
   },
 ];
+fetch("https://restcountries.com/v2/all")
+  .then((data) => data.json())
+  .then((countries) => {
+    console.log(countries);
+    let data = countries.map((item) => {
+      return {
+        image: item.flags.png,
+        country: item.name,
+        population: item.population,
+        region: item.region,
+        capital: item.capital,
+      };
+    });
+    renderer(data);
+  });
+function renderer(countries) {
+  countries.forEach((item, i) => {
+    //console.log(item);
+    let col = document.createElement("div");
+    let flagContainer = document.createElement("div");
+    let image = document.createElement("img");
 
-countries.forEach((item, i) => {
-  console.log(item);
-  let col = document.createElement("div");
-  let flagContainer = document.createElement("div");
-  let image = document.createElement("img");
+    container.appendChild(row);
+    row.appendChild(col);
+    col.appendChild(flagContainer);
+    flagContainer.appendChild(image);
 
-  container.appendChild(row);
-  row.appendChild(col);
-  col.appendChild(flagContainer);
-  flagContainer.appendChild(image);
-
-  row.setAttribute("class", "row");
-  col.setAttribute("class", "col-12 col-md-6 col-xl-3");
-  image.setAttribute("class", "flag");
-  flagContainer.setAttribute("class", "flagContainer");
-  let images = document.getElementsByTagName("img");
-  images[i].setAttribute("src", item.image);
-  let keys = Object.keys(item);
-  for (let j = 1; j < keys.length; j++) {
-    let h4 = document.createElement("H4");
-    let h5 = document.createElement("H5");
-    let data = document.createElement("div");
-    let details = document.createElement("div");
-    data.setAttribute("class", "data");
-    details.setAttribute("class", "detailsContainer");
-    h4.innerText = `${keys[j]} :`;
-    h5.innerText = item[keys[j]];
-    details.appendChild(data);
-    data.appendChild(h4);
-    data.appendChild(h5);
-    flagContainer.appendChild(details);
-  }
-});
+    row.setAttribute("class", "row");
+    col.setAttribute("class", "col-12 col-md-6 col-xl-3");
+    image.setAttribute("class", "flag");
+    flagContainer.setAttribute("class", "flagContainer");
+    let images = document.getElementsByTagName("img");
+    images[i].setAttribute("src", item.image);
+    let keys = Object.keys(item);
+    for (let j = 1; j < keys.length; j++) {
+      let h4 = document.createElement("H4");
+      let h5 = document.createElement("H5");
+      let data = document.createElement("div");
+      let details = document.createElement("div");
+      data.setAttribute("class", "data");
+      details.setAttribute("class", "detailsContainer");
+      h4.innerText = `${keys[j]} :`;
+      h5.innerText = item[keys[j]];
+      details.appendChild(data);
+      data.appendChild(h4);
+      data.appendChild(h5);
+      flagContainer.appendChild(details);
+    }
+  });
+}
